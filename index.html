@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Encontrá recetas con los ingredientes que ya tenés en tu cocina.">
+  <meta name="theme-color" content="#faf7ef">
+  <title>¿Qué Cocino Hoy?</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-chef" viewBox="0 0 24 24"><path d="M6 13.5a4 4 0 1 1 1.6-7.7 4.6 4.6 0 0 1 8.8 0 4 4 0 1 1 1.6 7.7V21H6z"/><path d="M6 17h12m-9-4v1m6-1v1"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7c-2.5-2.6-5.5-2.6-9-2v14c3.5-.6 6.5-.6 9 2 2.5-2.6 5.5-2.6 9-2V5c-3.5-.6-6.5-.6-9 2v14"/><path d="M6.5 9c.8 0 1.5.1 2.1.4m6.8 0c.6-.3 1.3-.4 2.1-.4"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.6c0-2.6-2-4.4-4.4-4.4-1.9 0-3.4 1.1-4.4 2.6-1-1.5-2.5-2.6-4.4-2.6-2.4 0-4.4 1.8-4.4 4.4 0 4 5 7.7 8.8 11 3.8-3.3 8.8-7 8.8-11Z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M2.5 4h2.3l2.6 11h11.3l2.3-8H5.5"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></symbol>
+    <symbol id="i-basket" viewBox="0 0 24 24"><path d="M3 10h18l-2 10H5zm4 0 4-6m6 6-4-6m-4 9 1 4m5-4-1 4M2 10h20"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4 4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12H19m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-level" viewBox="0 0 24 24"><path d="M5 19v-4m7 4V9m7 10V4"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2m1-15a3 3 0 0 1 0 6m1 3a4 4 0 0 1 4 4v2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="currentColor"/><circle cx="15" cy="17" r="2" fill="currentColor"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c2-5 6-8 12-11M7 15C4 8 10 4 20 4c0 10-4 15-11 12"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#recetas">
+        <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-chef"></use></svg></span>
+        <span>¿Qué Cocino Hoy?</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="#recetas" aria-current="page">
+          <svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg> Recetas
+        </a>
+        <a class="nav-link" href="#favoritos">
+          <svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg> Favoritos
+          <span class="nav-count" id="favorite-count" hidden></span>
+        </a>
+        <a class="nav-link" href="#compras">
+          <svg class="icon" aria-hidden="true"><use href="#i-cart"></use></svg> Compras
+          <span class="nav-count" id="shopping-count" hidden></span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell main-content" id="main-content" tabindex="-1">
+    <section id="recipes-view" aria-label="Recetas">
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Hoy cocinás con<br><em>lo que tenés.</em></h1>
+          <p>Elegí los ingredientes que tenés en casa y descubrí qué podés cocinar hoy.</p>
+          <button class="button button-hero" id="start-pantry" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#i-basket"></use></svg>
+            Elegir ingredientes
+            <svg class="icon button-arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="workspace">
+        <aside class="pantry" id="pantry" aria-labelledby="pantry-title">
+          <div class="pantry-heading">
+            <span class="section-icon"><svg class="icon" aria-hidden="true"><use href="#i-basket"></use></svg></span>
+            <h2 id="pantry-title">Mi despensa</h2>
+          </div>
+          <p class="pantry-intro">Marcá lo que ya tenés en casa.</p>
+          <label class="search-field">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+            <span class="sr-only">Buscar ingrediente</span>
+            <input id="ingredient-search" type="search" placeholder="Buscar ingrediente…" autocomplete="off" spellcheck="false">
+          </label>
+          <div class="ingredient-picker">
+            <h3 id="ingredient-options-title">Ingredientes comunes</h3>
+            <div class="ingredient-options" id="ingredient-options" role="group" aria-labelledby="ingredient-options-title"></div>
+            <button class="text-button all-ingredients" id="all-ingredients" type="button" aria-expanded="false" aria-controls="ingredient-options">
+              <span>Ver todos los ingredientes</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </button>
+          </div>
+          <div class="pantry-selected">
+            <div class="selection-heading">
+              <h3>Tus ingredientes <span id="ingredient-count" class="number-pill">0</span></h3>
+              <button class="text-button" type="button" id="clear-pantry" hidden>Limpiar</button>
+            </div>
+            <p id="selection-empty">Todavía no agregaste ingredientes.</p>
+            <ul class="selected-ingredients" id="selected-ingredients"></ul>
+          </div>
+        </aside>
+
+        <section class="recipes" aria-labelledby="recipes-title">
+          <div class="section-heading">
+            <h2 id="recipes-title">Explorá las recetas</h2>
+            <p class="result-count" id="recipe-count" aria-live="polite"></p>
+          </div>
+          <div class="filters" aria-label="Filtros de recetas" role="group">
+            <div class="filter-label">
+              <svg class="icon" aria-hidden="true"><use href="#i-filter"></use></svg>
+              <span>Filtros</span>
+            </div>
+            <label class="select-field">
+              <span class="sr-only">Categoría</span>
+              <select id="category-filter">
+                <option value="">Todas las categorías</option>
+                <option>Desayuno</option>
+                <option>Almuerzo</option>
+                <option>Cena</option>
+                <option>Postre</option>
+              </select>
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </label>
+            <label class="select-field">
+              <span class="sr-only">Dificultad</span>
+              <select id="difficulty-filter">
+                <option value="">Toda dificultad</option>
+                <option>Fácil</option>
+                <option>Media</option>
+                <option>Difícil</option>
+              </select>
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </label>
+            <label class="select-field">
+              <span class="sr-only">Tiempo de preparación</span>
+              <select id="time-filter">
+                <option value="">Cualquier tiempo</option>
+                <option value="15">Hasta 15 min de prep.</option>
+                <option value="30">Hasta 30 min de prep.</option>
+                <option value="45">Hasta 45 min de prep.</option>
+                <option value="60">Hasta 60 min de prep.</option>
+              </select>
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </label>
+          </div>
+          <div class="recipe-grid" id="recipe-grid"></div>
+          <div class="empty-state" id="no-results" hidden>
+            <span class="section-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+            <h3>No encontramos recetas</h3>
+            <p>Probá con otra combinación de filtros.</p>
+            <button class="button button-outline" type="button" id="reset-filters">Limpiar filtros</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="inner-view" id="favorites-view" hidden aria-labelledby="favorites-title">
+      <div class="inner-heading">
+        <span class="section-icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+        <div><h1 id="favorites-title">Mis favoritos</h1><p>Volvé a encontrar las recetas que guardaste.</p></div>
+      </div>
+      <div class="recipe-grid favorites-grid" id="favorites-grid"></div>
+      <div class="empty-state" id="favorites-empty">
+        <span class="section-icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+        <h2>Todavía no tenés favoritos</h2>
+        <p>Tocá el corazón de una receta para guardarla acá.</p>
+        <a class="button button-primary" href="#recetas">Explorar recetas <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+      </div>
+    </section>
+
+    <section class="inner-view" id="shopping-view" hidden aria-labelledby="shopping-title">
+      <div class="inner-heading">
+        <span class="section-icon"><svg class="icon" aria-hidden="true"><use href="#i-cart"></use></svg></span>
+        <div><h1 id="shopping-title">Lista de compras</h1><p>Marcá los ingredientes a medida que los comprás.</p></div>
+      </div>
+      <div class="shopping-panel" id="shopping-panel" hidden>
+        <div class="shopping-heading">
+          <h2>Tus compras</h2>
+          <p id="shopping-progress" aria-live="polite"></p>
+        </div>
+        <ul class="shopping-list" id="shopping-list"></ul>
+      </div>
+      <div class="empty-state" id="shopping-empty">
+        <span class="section-icon"><svg class="icon" aria-hidden="true"><use href="#i-cart"></use></svg></span>
+        <h2>Tu lista está vacía</h2>
+        <p>Abrí una receta y agregá los ingredientes que te faltan.</p>
+        <a class="button button-primary" href="#recetas">Explorar recetas <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+      </div>
+    </section>
+    <noscript><p class="noscript">Activá JavaScript para usar las recetas y tu despensa.</p></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span><svg class="icon" aria-hidden="true"><use href="#i-leaf"></use></svg> ¿Qué Cocino Hoy?</span>
+    </div>
+  </footer>
+
+  <dialog class="recipe-dialog" id="recipe-dialog" aria-labelledby="dialog-title">
+    <button type="button" class="icon-button dialog-close" id="close-recipe" aria-label="Cerrar receta" autofocus>
+      <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+    <div id="dialog-content"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body>
+</html>

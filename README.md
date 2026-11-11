@@ -2,7 +2,7 @@
 
 ## Descripción del proyecto
 
-¿Qué Cocino Hoy? es una aplicación web que recomienda recetas a partir de los ingredientes disponibles en casa. Fue desarrollada como trabajo final de Desarrollo de Aplicaciones de quinto año de secundaria y se puede utilizar desde una computadora o un celular.
+¿Qué Cocino Hoy? es una aplicación web que recomienda recetas a partir de los ingredientes disponibles en casa y se puede utilizar desde una computadora o un celular.
 
 ## Problema que resuelve
 
